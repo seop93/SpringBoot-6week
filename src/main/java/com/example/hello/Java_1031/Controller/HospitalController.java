@@ -23,7 +23,7 @@ public class HospitalController {
 
 
     @GetMapping(value = "/search/{id}")
-    public ResponseEntity<Hospital> getById(@PathVariable("id") int id) throws SQLException,ClassNotFoundException {
+    public ResponseEntity<Hospital> getById(@PathVariable("id") Integer id) throws SQLException,ClassNotFoundException {
         Hospital hospital = hospitalDao.findById(id);
         Optional<Hospital> opt = Optional.of(hospital);
 
@@ -32,8 +32,6 @@ public class HospitalController {
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Hospital());
         }
-
-
 
 
     }
