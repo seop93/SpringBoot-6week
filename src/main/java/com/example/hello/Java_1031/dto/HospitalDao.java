@@ -1,7 +1,10 @@
 package com.example.hello.Java_1031.dto;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
+
+import java.sql.SQLException;
 
 @Component
 public class HospitalDao {
@@ -36,6 +39,38 @@ public class HospitalDao {
         return this.jdbcTemplate.queryForObject(sql,Integer.class);
 
     }
+
+    public void deleteAll(){
+        this.jdbcTemplate.update("DELETE FROM nation_wide_hospitals");
+    }
+    RowMapper<Hospital> rowMapper = (rs, rowNum) -> {
+        Hospital hospital = new Hospital(
+                rs.getInt("id"),
+                rs.getString("open_service_name"),
+                rs.getInt("open_local_goverment_code"),
+                rs.getString("management_number"),
+                rs.getTimestamp("license_date").toLocalDateTime(),
+                rs.getInt("business_status"),
+                rs.getInt("business_status_code"),
+                rs.getString("phone"),
+                rs.getString("full_address"),
+                rs.getString("road_name_address"),
+                rs.getString("hospital_name"),
+                rs.getString("business_type_name"),
+                rs.getInt("healthcare_provider_count"),
+                rs.getInt("patient_room_count"),
+                rs.getInt("total_number_of_beds"),
+                rs.getFloat("total_area_size")
+        );
+        return hospital;
+    };
+
+    public Hospital findById(int id) throws ClassNotFoundException, SQLException {
+        String sql = "select * from nation_wide_hospital where id = ?";
+        return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
+
+
 }
 
 
