@@ -16,14 +16,14 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/hospital-api")
 public class HospitalController {
-    HospitalDao hospitalDao;
+    private final HospitalDao hospitalDao;
     public HospitalController(HospitalDao hospitalDao){
         this.hospitalDao = hospitalDao;
     }
 
 
-    @GetMapping(value = "/search/{id}")
-    public ResponseEntity<Hospital> getById(@PathVariable("id") Integer id) throws SQLException,ClassNotFoundException {
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Hospital> get(@PathVariable Integer id) throws SQLException,ClassNotFoundException {
         Hospital hospital = hospitalDao.findById(id);
         Optional<Hospital> opt = Optional.of(hospital);
 
