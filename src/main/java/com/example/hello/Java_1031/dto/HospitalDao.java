@@ -65,8 +65,8 @@ public class HospitalDao {
         return hospital;
     };
 
-    public Hospital findById(int id) throws ClassNotFoundException, SQLException {
-        String sql = "select * from nation_wide_hospital where id = ?";
+    public Hospital findById(int id) {
+        String sql = "select * from nation_wide_hospitals where id = ?";
         return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 

@@ -23,7 +23,7 @@ public class HospitalController {
 
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Hospital> get(@PathVariable Integer id) throws SQLException,ClassNotFoundException {
+    public ResponseEntity<Hospital> get(@PathVariable Integer id)  {
         Hospital hospital = hospitalDao.findById(id);
         Optional<Hospital> opt = Optional.of(hospital);
 
