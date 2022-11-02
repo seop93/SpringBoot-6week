@@ -29,7 +29,7 @@ class HospitalParserTest {
     @Test
     @DisplayName("만건 이상 데이터가 파싱되는지 ")
     void name() throws IOException {
-        String filename = "/Users/minji/Documents/likelion/file/fulldata_01_01_02_P_의원.csv";
+        String filename = "/Users/byeonheungseob/Downloads/hospital.csv";
         List<Hospital> hospitalList = hospitalReadLineContext.readByLine(filename);
         assertTrue(hospitalList.size() > 10000);
     }
@@ -89,15 +89,16 @@ class HospitalParserTest {
         assertEquals(52.29f, hospital.getTotalAreaSize());
     }
 
+/*
     @Test
     @DisplayName("findById가 잘 되는지")
     void findByIdTest() throws SQLException,ClassNotFoundException {
         HospitalParser hp=new HospitalParser();
-        hospitalDao.deleteAll();
         Hospital hospital= hp.parse(line1);
         hospitalDao.add(hospital);
         Hospital findHospital=hospitalDao.findById("1");
         assertEquals(hospital.getHospitalName(), findHospital.getHospitalName());
     }
+*/
 
 }
